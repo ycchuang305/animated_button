@@ -5,9 +5,11 @@ class PushableButton extends StatefulWidget {
     Key? key,
     required this.color,
     required this.text,
+    required this.onPressed,
   }) : super(key: key);
   final Color color;
   final String text;
+  final VoidCallback onPressed;
 
   @override
   _PushableButtonState createState() => _PushableButtonState();
@@ -26,6 +28,7 @@ class _PushableButtonState extends State<PushableButton>
         milliseconds: 200,
       ),
     );
+    _animationController.addStatusListener(_onStatusUpdates);
   }
 
   @override
@@ -40,6 +43,12 @@ class _PushableButtonState extends State<PushableButton>
 
   void _handleTapCancel() {
     _animationController.reverse();
+  }
+
+  void _onStatusUpdates(AnimationStatus status) {
+    if (status == AnimationStatus.completed) {
+      widget.onPressed();
+    }
   }
 
   @override
