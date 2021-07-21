@@ -1,16 +1,17 @@
 # animated_button
 
-A new Flutter project.
+A simple homework comes from Andrea Bizzotto's Flutter animation course 
 
-## Getting Started
+## App Content
 
-This project is a starting point for a Flutter application.
+Use the following components to build the 3D pushable button
 
-A few resources to get you started if this is your first Flutter project:
+1. Stack
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+2. Container
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+3. AnimationController
+
+4. AnimatedBuilder
+
+5. GestureDetector
