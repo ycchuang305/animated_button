@@ -23,7 +23,7 @@ class _PushableButtonState extends State<PushableButton>
     _animationController = AnimationController(
       vsync: this,
       duration: Duration(
-        milliseconds: 750,
+        milliseconds: 200,
       ),
     );
   }
@@ -45,7 +45,7 @@ class _PushableButtonState extends State<PushableButton>
   @override
   Widget build(BuildContext context) {
     final hsl = HSLColor.fromColor(widget.color);
-    final hslDark = hsl.withLightness(0.5);
+    final hslDark = hsl.withLightness(0.3);
     final shadowColor = hslDark.toColor();
     return GestureDetector(
       onTapDown: _handleTapDown,
@@ -54,20 +54,46 @@ class _PushableButtonState extends State<PushableButton>
       child: AnimatedBuilder(
         animation: _animationController,
         builder: (_, __) {
-          return Container(
-            decoration: BoxDecoration(
-                color: widget.color,
-                borderRadius: BorderRadius.all(Radius.circular(15.0)),
-                boxShadow: [
-                  BoxShadow(
+          return SizedBox(
+            height: 68,
+            child: Stack(
+              children: [
+                Positioned.fill(
+                  left: 20,
+                  right: 20,
+                  top: 8,
+                  child: Container(
+                    height: 60,
+                    decoration: BoxDecoration(
                       color: shadowColor,
-                      offset: Offset(
-                          0.0, 6.0 * (1.0 - _animationController.value))),
-                ]),
-            child: Text(
-              widget.text,
-              textAlign: TextAlign.center,
-              style: TextStyle(color: Colors.white),
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                  ),
+                ),
+                Positioned.fill(
+                  left: 20,
+                  right: 20,
+                  top: 0 + (8 * _animationController.value),
+                  bottom: 8 - (8 * _animationController.value),
+                  child: Container(
+                    height: 60,
+                    decoration: BoxDecoration(
+                      color: widget.color,
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: Center(
+                      child: Text(
+                        widget.text,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 24,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
           );
         },
