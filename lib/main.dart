@@ -53,11 +53,22 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisSize: MainAxisSize.min,
           children: [
             ListView.separated(
+              padding: const EdgeInsets.symmetric(horizontal: 20.0),
+              physics: NeverScrollableScrollPhysics(),
               shrinkWrap: true,
               itemBuilder: (_, index) {
                 return PushableButton(
                   color: _colors[index],
-                  text: _buttonTexts[index],
+                  height: 60,
+                  elevation: 8,
+                  child: Text(
+                    _buttonTexts[index],
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 24,
+                    ),
+                  ),
                   onPressed: () {
                     setState(() {
                       _currentIndex = index + 1;
